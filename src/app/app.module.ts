@@ -7,7 +7,6 @@ import {FormsModule} from '@angular/forms'; // <-- NgModel lives here
 import {RouterModule} from '@angular/router';
 import { HttpModule } from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MaterialModule} from '@angular/material';
 
 import {AppComponent} from './app.component';
 
@@ -35,8 +34,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     FormsModule,
     AppRoutingModule,
     HttpModule,
-    BrowserAnimationsModule,
-    MaterialModule
+    BrowserAnimationsModule
   ],
   providers: [NotificationService],
   bootstrap: [AppComponent]
