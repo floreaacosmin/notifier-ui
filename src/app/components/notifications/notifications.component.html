@@ -1,0 +1,40 @@
+<!-- notifications list -->
+<h2>my notifications:</h2>
+<ul class="notifications">
+	<li *ngFor="let notification of notifications" 
+		[class.selected]="notification === selectedNotification"
+			(click)="onSelect(notification)">
+		<!-- each notification goes here -->
+		<span class="badge">{{notification.id}}</span>
+		<span> {{notification.name}}</span>
+		<button class="delete" 
+			(click)="deleteNotification(notification); $event.stopPropagation()">x</button> 
+	</li>
+</ul>
+
+<div *ngIf="selectedNotification">
+  <h2>
+    {{selectedNotification.name | uppercase}} is my notification
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>
+
+<div>
+	<h2>
+  		<label>new notification:</label>
+	</h2>
+</div>
+<div>  
+  <label>name</label> <input #notificationName />
+</div>
+<div>
+  <label>content</label> <input #notificationContent />
+</div>
+<div>      
+  <button (click)="addNotification(notificationName.value, notificationContent.value); 
+    notificationName.value='';
+    notificationContent.value=''">
+    Add
+  </button>
+</div>
+

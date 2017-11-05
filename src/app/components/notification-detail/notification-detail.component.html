@@ -1,0 +1,20 @@
+<!-- notification detail -->
+<div *ngIf="notification">
+	<h3>these are the details for {{notification.name}}:</h3>
+	<div>
+		<label>id: </label>
+		{{notification.id}}
+	</div>
+	<div>
+		<label>name: </label>
+		<input [(ngModel)]="notification.name" placeholder="name">
+	</div>
+	<div>
+		<label>content: </label>
+		<input [(ngModel)]="notification.content" placeholder="content">
+	</div>
+	</div>
+		<button (click)="save()">Save</button>
+		<button (click)="goBack()">Back</button>
+	<div>
+</div>

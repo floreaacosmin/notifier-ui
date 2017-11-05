@@ -12,48 +12,48 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
-import {CustomerSearchService} from '../services/customer-search.service';
-import {Customer} from '../customer/customer';
+import { NotificationSearchService } from './../../services/notification-search.service';
+import { Notification } from './../../objects/notification';
 
 @Component({
-  selector: 'customer-search',
-  templateUrl: './customer-search.component.html',
-  styleUrls: ['./customer-search.component.css'],
-  providers: [CustomerSearchService]
+  selector: 'notification-search',
+  templateUrl: './notification-search.component.html',
+  styleUrls: ['./notification-search.component.css'],
+  providers: [NotificationSearchService]
 })
   
-export class CustomerSearchComponent implements OnInit {
+export class NotificationSearchComponent implements OnInit {
   
-  customers: Observable<Customer[]>;
+  notifications: Observable<Notification[]>;
   private searchTerms = new Subject<string>();
 
   constructor(
-    private customerSearchService: CustomerSearchService,
+    private notficationSearchService: NotificationSearchService,
     private router: Router) {}
 
   // push a search term into the observable stream
-  searchCustomer(term: string): void {
+  searchNotification(term: string): void {
     this.searchTerms.next(term);
   }
 
   ngOnInit(): void {
-    this.customers = this.searchTerms
+    this.notifications = this.searchTerms
       .debounceTime(300)        // wait 300ms after each keystroke before considering the term
       .distinctUntilChanged()   // ignore if next search term is same as previous
       .switchMap(term => term   // switch to new observable each time the term changes
         // return the http search observable
-        ? this.customerSearchService.searchCustomer(term)
+        ? this.notficationSearchService.searchNotification(term)
         // or the observable of empty heroes if there was no search term
-        : Observable.of<Customer[]>([]))
+        : Observable.of<Notification[]>([]))
       .catch(error => {
         // TODO: add real error handling
         console.log(error);
-        return Observable.of<Customer[]>([]);
+        return Observable.of<Notification[]>([]);
       });
   }
 
-  gotoDetail(customer: Customer): void {
-    const link = ['/detail', customer.id];
+  gotoDetail(notification: Notification): void {
+    const link = ['/detail', notification.id];
     this.router.navigate(link);
   }
 }

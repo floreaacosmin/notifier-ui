@@ -7,5 +7,5 @@ import {Component} from '@angular/core';
 })
   
 export class AppComponent {
-    public title = 'restui - getting customers in an UI';
+    public title = 'notifier UI';
 }

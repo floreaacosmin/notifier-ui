@@ -1,0 +1,10 @@
+<div id="search-component">
+  <h4>notification search:</h4>
+  <input #searchBox id="search-box" (keyup)="searchNotification(searchBox.value)" />
+  <div>
+    <div *ngFor="let notification of notifications | async"
+         (click)="gotoDetail(notification)" class="search-result" >
+      {{notification.name}} {{notification.content}}
+    </div>
+  </div>
+</div>

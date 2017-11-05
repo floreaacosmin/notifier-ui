@@ -2,7 +2,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Router, NavigationStart} from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import {CustomerService} from '../services/customer.service';
+import { NotificationService } from './../../services/notification.service';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class AppStatusComponent implements OnInit, OnDestroy {
   private routerSubscription: Subscription;
   private observableSubscription: Subscription;
 
-  constructor(private customerService: CustomerService, private router: Router) {}
+  constructor(private notificationService: NotificationService, private router: Router) {}
 
   private setBackendStatus(status: string) {
     console.log('setBackendStatus() value: ' + status);
@@ -28,9 +28,9 @@ export class AppStatusComponent implements OnInit, OnDestroy {
    
     this.routerSubscription = this.router.events.subscribe(
       (event) => {if (event instanceof NavigationStart) {
-        this.observableSubscription = this.customerService.testConnection().subscribe(
+        this.observableSubscription = this.notificationService.testConnection().subscribe(
           value => this.setBackendStatus(''),
-          error => this.setBackendStatus('backend is down'),
+          error => this.setBackendStatus('notifier-rest is down'),
           () => {} // do nothing on complete
         )
       }}

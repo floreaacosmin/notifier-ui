@@ -3,15 +3,15 @@ import { Observable } from 'rxjs/Observable';
 import { element } from 'protractor';
 import {Injectable} from '@angular/core';
 
-import {Customer} from '../customer/customer';
+import { Notification } from './../objects/notification';
 import {BackendURL} from './backendurl';
-import {CUSTOMERS} from '../mock-data/mock-customers';
+import {NOTIFICATIONS} from '../objects/mock-notifications';
 import {Headers, Http} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class CustomerService {
+export class NotificationService {
   
   private headers = new Headers({'Content-Type': 'application/json'});
   private failedAttemptNumber: number;
@@ -20,40 +20,40 @@ export class CustomerService {
     this.failedAttemptNumber = 0;
   }
 
-  getCustomer(id: number): Promise<Customer> {
-    const url = `${BackendURL.customersUrl}/${id}`;
+  getNotification(id: number): Promise<Notification> {
+    const url = `${BackendURL.notificationUrl}/${id}`;
     return this.http.get(url)
       .toPromise()
-      .then(response => response.json() as Customer)
+      .then(response => response.json() as Notification)
       .catch(this.handleError.bind(this));
   }
 
-  getCustomers(): Promise<Customer[]> {
-    return this.http.request(BackendURL.customersUrl + BackendURL.allSuffix)
+  getNotifications(): Promise<Notification[]> {
+    return this.http.request(BackendURL.allNotificationsUrl)
       .toPromise()
-      .then(response => response.json() as Customer[])
+      .then(response => response.json() as Notification[])
       .catch(this.handleError.bind(this));
   }
 
-  updateCustomer(customer: Customer): Promise<Customer> {
-    const url = `${BackendURL.customersUrl}/${customer.id}`;
+  updateNotification(notification: Notification): Promise<Notification> {
+    const url = `${BackendURL.allNotificationsUrl}/${notification.id}`;
     return this.http
-      .put(url, JSON.stringify(customer), {headers: this.headers})
+      .put(url, JSON.stringify(notification), {headers: this.headers})
       .toPromise()
-      .then(() => customer)
+      .then(() => notification)
       .catch(this.handleError.bind(this));
   }
 
-  createCustomer(firstName: string, lastName: string): Promise<Customer> {
-    return this.http.post(BackendURL.addCustomerUrl,
-      JSON.stringify({firstName: firstName, lastName: lastName}), {headers: this.headers})
+  createNotification(name: string, content: string): Promise<Notification> {
+    return this.http.post(BackendURL.addNotificationUrl,
+      JSON.stringify({name: name, content: content}), {headers: this.headers})
       .toPromise()
-      .then(res => res.json() as Customer)
+      .then(res => res.json() as Notification)
       .catch(this.handleError.bind(this));
   }
   
-  deleteCustomer(id: number): Promise<void> {
-    const url = `${BackendURL.customersUrl}/${id}`;
+  deleteNotification(id: number): Promise<void> {
+    const url = `${BackendURL.notificationUrl}/${id}`;
     return this.http.delete(url, {headers: this.headers})
       .toPromise()
       .then(() => null)
@@ -61,7 +61,7 @@ export class CustomerService {
   }
 
   testConnection(): Observable<any> {
-    return this.http.request(BackendURL.baseUrl);
+    return this.http.request(BackendURL.baseUrlOpenShift);
   }
 
   private handleError(error: Response): Promise<any> {

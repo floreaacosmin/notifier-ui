@@ -1,0 +1,11 @@
+<h3>last notifications:</h3>
+<div class="grid grid-pad">
+	<a *ngFor="let notification of notifications"
+		[routerLink]="['/detail', notification.id]" class="col-1-4">
+		<div class="module notification">
+			<h4>{{notification.name}} {{notification.content}}</h4>
+		</div>
+	</a>
+</div>
+<notification-search></notification-search>
+

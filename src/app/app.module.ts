@@ -1,3 +1,4 @@
+
 import 'hammerjs';
 
 import {BrowserModule} from '@angular/platform-browser';
@@ -9,12 +10,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from '@angular/material';
 
 import {AppComponent} from './app.component';
-import {CustomersComponent} from './customers/customers.component';
-import {CustomerDetailComponent} from './customer-detail/customer-detail.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {CustomerSearchComponent} from './customer-search/customer-search.component';
-import {CustomerService} from './services/customer.service';
-import {AppStatusComponent} from './app-status/app-status.component'
+
+import { NotificationService } from './services/notification.service';
+import { NotificationSearchComponent } from './components/notification-search/notification-search.component';
+import { NotificationDetailComponent } from './components/notification-detail/notification-detail.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import {DashboardComponent} from './/components/dashboard/dashboard.component';
+import {AppStatusComponent} from './components/app-status/app-status.component'
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
@@ -23,9 +25,9 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
   declarations: [
     AppComponent,
     DashboardComponent,
-    CustomersComponent,
-    CustomerDetailComponent,
-    CustomerSearchComponent,
+    NotificationsComponent,
+    NotificationDetailComponent,
+    NotificationSearchComponent,
     AppStatusComponent
   ],
   imports: [
@@ -36,7 +38,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [CustomerService],
+  providers: [NotificationService],
   bootstrap: [AppComponent]
 })
 
