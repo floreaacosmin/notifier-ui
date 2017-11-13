@@ -1,11 +1,16 @@
 export class BackendURL {
 
-  // public static baseUrlLocal = 'http://localhost:8080';
+  public static baseUrlLocal = 'http://localhost:8080';
   public static baseUrlOpenShift = 'http://notifier-rest-notifier-db.7e14.starter-us-west-2.openshiftapps.com';
-  public static allNotificationsUrl = BackendURL.baseUrlOpenShift + '/notifications/all';
-  public static notificationUrl = BackendURL.baseUrlOpenShift + '/notifications/';
+  
+  public static activeUrl = BackendURL.baseUrlOpenShift;
 
-  public static notificationsSearchUrl = BackendURL.allNotificationsUrl + '/search';  
-  public static addNotificationUrl = BackendURL.baseUrlOpenShift + '/addnotification';
   public static allSuffix = '/all';
+
+  public static notificationUrl = BackendURL.activeUrl + '/notifications';
+  public static allNotificationsUrl = BackendURL.notificationUrl + BackendURL.allSuffix;
+
+  public static notificationsSearchUrl = BackendURL.notificationUrl + '/search';  
+  public static addNotificationUrl = BackendURL.activeUrl + '/addnotification';
+  
 }
