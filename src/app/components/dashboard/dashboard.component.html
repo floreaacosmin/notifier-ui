@@ -3,7 +3,7 @@
 	<a *ngFor="let notification of notifications"
 		[routerLink]="['/detail', notification.id]" class="col-1-4">
 		<div class="module notification">
-			<h4>{{notification.name}} {{notification.content}}</h4>
+			<h4>{{notification.author}} - {{notification.name}} - {{notification.content}}</h4>
 		</div>
 	</a>
 </div>

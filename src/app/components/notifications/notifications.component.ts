@@ -24,15 +24,16 @@ export class NotificationsComponent implements OnInit {
     this.notificationservice.getNotifications().then(notifications => this.notifications = notifications);
   }
 
-  addNotification(name: string, content: string): void {
+  addNotification(author: string, name: string, content: string): void {
+    author = author.trim();
     name = name.trim();
     content = content.trim();
     
-    if (!name || !content) {
+    if (!author || !name || !content) {
       return; 
     }
 
-    this.notificationservice.createNotification(name, content)
+    this.notificationservice.createNotification(author, name, content)
       .then(notification => {
         this.notifications.push(notification);
         this.selectedNotification = null;

@@ -5,7 +5,8 @@
 		[class.selected]="notification === selectedNotification"
 			(click)="onSelect(notification)">
 		<!-- each notification goes here -->
-		<span class="badge">{{notification.id}}</span>
+		<span class="badge">{{notification.id}} - </span>
+		<span> {{notification.author}} - </span>
 		<span> {{notification.name}}</span>
 		<button class="delete" 
 			(click)="deleteNotification(notification); $event.stopPropagation()">x</button> 
@@ -25,14 +26,18 @@
 	</h2>
 </div>
 <div>  
+  <label>author</label> <input #notificationAuthor />
+</div>
+<div>  
   <label>name</label> <input #notificationName />
 </div>
 <div>
   <label>content</label> <input #notificationContent />
 </div>
 <div>      
-  <button (click)="addNotification(notificationName.value, notificationContent.value); 
-    notificationName.value='';
+  <button (click)="addNotification(notificationAuthor.value, notificationName.value, notificationContent.value); 
+		notificationAuthor.value='';
+		notificationName.value='';
     notificationContent.value=''">
     Add
   </button>

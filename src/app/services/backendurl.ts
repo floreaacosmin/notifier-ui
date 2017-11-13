@@ -11,6 +11,6 @@ export class BackendURL {
   public static allNotificationsUrl = BackendURL.notificationUrl + BackendURL.allSuffix;
 
   public static notificationsSearchUrl = BackendURL.notificationUrl + '/search';  
-  public static addNotificationUrl = BackendURL.activeUrl + '/addnotification';
+  public static sendNotificationUrl = BackendURL.activeUrl + '/sendnotification';
   
 }

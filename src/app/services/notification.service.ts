@@ -44,9 +44,9 @@ export class NotificationService {
       .catch(this.handleError.bind(this));
   }
 
-  createNotification(name: string, content: string): Promise<Notification> {
-    return this.http.post(BackendURL.addNotificationUrl,
-      JSON.stringify({name: name, content: content}), {headers: this.headers})
+  createNotification(author: string, name: string, content: string): Promise<Notification> {
+    return this.http.post(BackendURL.sendNotificationUrl,
+      JSON.stringify({author: author, name: name, content: content}), {headers: this.headers})
       .toPromise()
       .then(res => res.json() as Notification)
       .catch(this.handleError.bind(this));
