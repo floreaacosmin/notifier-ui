@@ -1,5 +1,5 @@
 <div id="search-component">
-  <h4>notification search:</h4>
+  <h3>notification search:</h3>
   <input #searchBox id="search-box" (keyup)="searchNotification(searchBox.value)" />
   <div>
     <div *ngFor="let notification of notifications | async"

@@ -1,6 +1,7 @@
 #search-component{
 	float:left; 
-	clear: left;
+  clear: left;
+  padding: 40px;
 } 
   
 .search-result{

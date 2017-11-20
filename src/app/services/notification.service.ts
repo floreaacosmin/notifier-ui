@@ -5,7 +5,6 @@ import {Injectable} from '@angular/core';
 
 import { Notification } from './../objects/notification';
 import {BackendURL} from './backendurl';
-import {NOTIFICATIONS} from '../objects/mock-notifications';
 import {Headers, Http} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
