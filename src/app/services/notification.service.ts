@@ -45,7 +45,7 @@ export class NotificationService {
 
   createNotification(author: string, name: string, content: string): Promise<Notification> {
     return this.http.post(BackendURL.sendNotificationUrl,
-      JSON.stringify({author: author, name: name, content: content}), {headers: this.headers})
+      JSON.stringify({author: author, name: name, content: content, date: 'today', imageUrl: 'http://www.pvhc.net/img1/wmdxhwvvvzadyfetxqda.png'}), {headers: this.headers})
       .toPromise()
       .then(res => res.json() as Notification)
       .catch(this.handleError.bind(this));
